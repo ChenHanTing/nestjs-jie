@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 
 /**
@@ -42,6 +42,15 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  /**
+   * http://localhost:3000/test_page
+   */
+  @Get('test_page')
+  @Render('test')
+  getPage(): Object {
+    return { message: "Hello" };
   }
 
   /**
